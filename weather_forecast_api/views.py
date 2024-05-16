@@ -31,6 +31,10 @@ def weather_api_post_method(request):
 
     url = f'https://api.open-meteo.com/v1/forecast?latitude={longitude}2&longitude={longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,sunshine_duration'
     response = requests.get(url)
+
+    if not response.ok:
+        return Response(request.data, status.HTTP_500_INTERNAL_SERVER_ERROR)
+
     data = response.json()
     dates_list = data["daily"]["time"]
     wheather_code_list = data["daily"]["weather_code"]
