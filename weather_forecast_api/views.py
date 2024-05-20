@@ -30,7 +30,7 @@ def weather_api_post_method(request):
     if latitude < -90 or latitude > 90 or longitude < -180 or longitude > 180:
         return Response(request.data, status.HTTP_400_BAD_REQUEST)
 
-    url = f'https://api.open-meteo.com/v1/forecast?latitude={longitude}2&longitude={longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,sunshine_duration'
+    url = f'https://api.open-meteo.com/v1/forecast?latitude={longitude}&longitude={longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,sunshine_duration'
     response = requests.get(url)
 
     if not response.ok:
