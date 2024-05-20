@@ -22,6 +22,7 @@ def weather_api_post_method(request):
     except ValidationError:
         return Response(request.data, status.HTTP_400_BAD_REQUEST)
 
+    print(request.data)
 
     longitude = request.data["longitude"]
     latitude = request.data["latitude"]
